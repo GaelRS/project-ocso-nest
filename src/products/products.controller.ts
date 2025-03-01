@@ -21,10 +21,10 @@ export class ProductsController {
   findOne(@Param('id',new ParseUUIDPipe({version: '4'})) id: string) {
     return this.productsService.findOne(id);
   }
-  /*@Get('provider/:id')
+  @Get('provider/:id')
   findByProvider(@Param('id',new ParseUUIDPipe({version: '4'})) id: string) {
     return this.productsService.findByProvider(id);
-  }*/
+  }
 
   @Patch(':id')
   update(@Param('id',new ParseUUIDPipe({version: '4'})) id: string, @Body() updateProductDto: UpdateProductDto) {
