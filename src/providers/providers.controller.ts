@@ -28,12 +28,9 @@ export class ProvidersController {
 
   @Get('/name/:name')
   findByName(@Param('name') name: string) {
-    const provider = this.providersService.findByName(name);
-    if (!provider) {
-      throw new NotFoundException();
-    }
-    return provider;
-  }  
+    return this.providersService.findByName(name);
+  }
+   
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProviderDto: UpdateProviderDto) {
