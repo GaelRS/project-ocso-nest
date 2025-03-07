@@ -30,11 +30,12 @@ export class LocationsService {
   }
 
   async update(id: number, updateLocationDto: UpdateLocationDto) {
-    const location =  await this.locationRepository.preload({
+    const locationToUpdate =  await this.locationRepository.preload({
       locationId: id,
       ...updateLocationDto,
     });
-    return location;
+    if(!locationToUpdate) throw new NotFoundException("Location not found");
+    return this.locationRepository.save(locationToUpdate);
   }
 
   remove(id: number) {
