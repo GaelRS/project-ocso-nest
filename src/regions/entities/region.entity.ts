@@ -9,6 +9,6 @@ export class Region {
         unique: true
     })
     regionName: string;
-    @Column('array')
+    @Column('simple-array')
     regionStates: string[];
 }

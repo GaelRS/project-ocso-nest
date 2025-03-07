@@ -9,8 +9,7 @@ import { Repository } from 'typeorm';
 export class ManagersService {
   constructor(
     @InjectRepository(Manager)
-    private managerRepository: Repository<Manager>,
-  ) {}
+    private managerRepository: Repository<Manager>) {}
   create(createManagerDto: CreateManagerDto) {
     return this.managerRepository.save(createManagerDto);
   }
