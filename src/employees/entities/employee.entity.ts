@@ -4,7 +4,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToOne
 @Entity()
 export class Employee {
     @PrimaryGeneratedColumn('uuid')
-    employeeId: string;
+    id: string;
     @Column({type:'text'})
     employeeName: string;
     @Column({type:'text'})
