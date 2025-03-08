@@ -41,4 +41,15 @@ export class AuthService {
       throw new Error('User not found or password is missing');
     }
   }
+
+  async updateUser(userEmail: string, updateUserDto: UpdateUserDto) {
+    const newUserData = await this.userRepository.preload({
+      userEmail,
+      ...updateUserDto
+    });
+    if (!newUserData) throw new Error('User not found');
+    
+    this.userRepository.save(newUserData);
+    return newUserData;
+  }
 }

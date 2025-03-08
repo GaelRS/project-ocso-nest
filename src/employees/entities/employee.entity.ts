@@ -4,20 +4,20 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToOne
 @Entity()
 export class Employee {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    employeeId: string;
     @Column({type:'text'})
-    name: string;
+    employeeName: string;
     @Column({type:'text'})
-    lastName: string;
+    employeeLastName: string;
     @Column({type:'text'})
-    phoneNumber: string;
-    @Column({type:'text'})
-    email: string;
+    employeePhoneNumber: string;
+    @Column({type:'text', unique: true})
+    employeeEmail: string;
     @Column({
         type:'text',
         nullable: true
     })
-    photoUrl: string;
+    employeePhoto: string;
 
 
     @ManyToOne(() => Location, (location)=>location.employees)
