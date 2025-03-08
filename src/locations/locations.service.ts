@@ -18,7 +18,7 @@ export class LocationsService {
   }
 
   findAll() {
-    return this.locationRepository.find
+    return this.locationRepository.find();
   }
 
   findOne(id: number) {

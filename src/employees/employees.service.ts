@@ -23,6 +23,14 @@ export class EmployeesService {
     return this.employeeRepository.find();
   }
 
+  findByLocation(id: number) {
+    return this.employeeRepository.findBy({
+      location: { 
+        locationId: id
+      }
+    });
+  }
+
   async findOne(id: string) {
     const employeeFound = this.employeeRepository.findOne({ where: { id } });
     if (!employeeFound) throw new NotFoundException();
