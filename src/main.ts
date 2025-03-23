@@ -4,10 +4,10 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule,{
-    cors:{
-      origin: process.env.allowedOrigin
-    }
+  const app = await NestFactory.create(AppModule, {
+    cors: {
+      origin: "http://localhost:3000",
+    },
   });
   const config = new DocumentBuilder()
     .setTitle('Ocso API')
@@ -26,7 +26,6 @@ async function bootstrap() {
       .swagger-ui .topbar .link svg {
         width: 150px; 
         height: 90px; 
-        
       }
       .swagger-ui .topbar .link svg g {
         display: none; 
@@ -36,7 +35,6 @@ async function bootstrap() {
         background-size: 90px 90px;
         background-repeat: no-repeat;
         background-position: center;
-
       }
       .swagger-ui .topbar { background-color: #E62E31; }
       .swagger-ui .opblock-tag {

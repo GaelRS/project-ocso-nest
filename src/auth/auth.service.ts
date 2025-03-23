@@ -21,25 +21,26 @@ export class AuthService {
   }
 
   async loginUser(loginUserDto: LoginUserDto) {
+    
     const user = await this.userRepository.findOne({
       where:{
         userEmail: loginUserDto.userEmail
       }
     })
     if (user) {
-
+      if(!user) throw new UnauthorizedException("No estas autorizado");
       const match = await bycrypt.compare(loginUserDto.userPassword, user.userPassword);
       if(!match) throw new UnauthorizedException("No estas autorizado");
       const payload = {
         userEmail: user.userEmail,
         userPassword: user.userPassword,
         userRoles: user.userRoles
-      }
+      };
       const token = this.jwtService.sign(payload);
       return token;
-    } else {
-      throw new Error('User not found or password is missing');
-    }
+      
+    } 
+    
   }
 
   async updateUser(userEmail: string, updateUserDto: UpdateUserDto) {
