@@ -24,6 +24,7 @@ export class RegionsService {
       regionId: id,
     });
     if (!region) throw new NotFoundException(`Region #${id} not found`);
+    return region;
   }
 
   async update(id: number, updateRegionDto: UpdateRegionDto) {

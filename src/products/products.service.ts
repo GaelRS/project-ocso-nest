@@ -27,7 +27,6 @@ export class ProductsService {
 
     if (!productFound) throw new NotFoundException();
     return productFound;
-
   }
 
   findByProvider(id: string) {
