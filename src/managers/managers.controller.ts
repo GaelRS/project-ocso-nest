@@ -19,13 +19,13 @@ export class ManagersController {
     return this.managersService.create(createManagerDto);
   }
 
-  @Auth()
+  //@Auth()
   @Get()
   findAll() {
     return this.managersService.findAll();
   }
 
-  @Auth()
+  //@Auth()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.managersService.findOne(id);
