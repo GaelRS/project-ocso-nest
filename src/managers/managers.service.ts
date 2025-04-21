@@ -24,11 +24,10 @@ export class ManagersService {
       relations:{
         location: true,
       }
-
     });
     if(!manager) throw new NotFoundException('Manager not found');
     return manager;
-  }
+  }gi
 
   async update(id: string, updateManagerDto: UpdateManagerDto) {
     const managerToUpdate = await this.managerRepository.preload({
