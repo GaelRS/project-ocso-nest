@@ -13,7 +13,7 @@ export class CreateProductDto extends Product{
     @ApiProperty()
     @IsString()
     @MaxLength(40)
-    productName: string;
+    productName: string ;
 
     @ApiProperty()
     @IsNumber()
@@ -24,7 +24,8 @@ export class CreateProductDto extends Product{
     countSeal: number;
 
     @ApiProperty()
-    @IsObject()
-    provider: Provider;
+    @IsString()
+    @IsOptional()
+    provider: Provider  | string;
 
 }
