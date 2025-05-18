@@ -30,8 +30,15 @@ export class EmployeesController {
 
   
   @Post()
-  create(@Body() createEmployeeDto: CreateEmployeeDto) {
-    return this.employeesService.create(createEmployeeDto);
+
+  @UseInterceptors(FileInterceptor('employeePhoto'))
+  create(@Body() createEmployeeDto: CreateEmployeeDto, @UploadedFile() file: Express.Multer.File) {
+    if(!file){
+      return this.employeesService.create(createEmployeeDto);
+    }else{
+      //Aquí deberian de ir las lineas de AWS para subir la foto
+      return this.employeesService.create(createEmployeeDto);
+    }
   }
 
   @Auth(ROLES.MANAGER, ROLES.EMPLOYEE)
@@ -61,12 +68,18 @@ export class EmployeesController {
   }
 
   @Auth(ROLES.MANAGER, ROLES.EMPLOYEE)
+  @UseInterceptors(FileInterceptor("employeePhoto"))
   @Patch(':id')
-  update(@Param('id', new ParseUUIDPipe({version:'4'})) id: string, @Body() updateEmployeeDto: UpdateEmployeeDto) {
-    return this.employeesService.update(id, updateEmployeeDto);
+  update(@Param('id', new ParseUUIDPipe({version:'4'})) id: string, @Body() updateEmployeeDto: UpdateEmployeeDto, @UploadedFile() file: Express.Multer.File) {
+    if(file.originalname === "undefined"){
+      return this.employeesService.update(id, updateEmployeeDto);
+    }else{
+      //Aquí deberian de ir las lineas de AWS para subir la foto
+      return this.employeesService.update(id, updateEmployeeDto);
+    }
   }
 
-  @Auth(ROLES.MANAGER)
+ @Auth(ROLES.MANAGER)
   @Delete(':id')
   remove(@Param('id', new ParseUUIDPipe({version:'4'})) id: string) {
     return this.employeesService.remove(id);
